@@ -1079,7 +1079,8 @@ class ForestRegressor(RegressorMixin, BaseForest, metaclass=ABCMeta):
             for e in self.estimators_
         )
 
-        y_hat /= len(self.estimators_)
+        #y_hat /= len(self.estimators_)
+        y_hat = np.median(np.array([tree.predict(X) for tree in self.estimators_]), axis=0)
 
         return y_hat
 
